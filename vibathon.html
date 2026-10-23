@@ -209,8 +209,8 @@
         /* Scroll Reveal Animations */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform: translateY(60px);
+            transition: all 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .reveal.active {
             opacity: 1;
@@ -256,6 +256,10 @@
                         </a>
                         <a href="#shelter" class="nav-link text-gray-300 hover:text-accent-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium relative group" data-target="shelter">
                             Shelter Network
+                            <span class="nav-indicator absolute bottom-0 left-0 w-0 h-0.5 bg-accent-cyan transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#public-donate" class="nav-link text-gray-300 hover:text-accent-cyan transition-colors px-3 py-2 rounded-md text-sm font-medium relative group" data-target="public-donate">
+                            Public Donate
                             <span class="nav-indicator absolute bottom-0 left-0 w-0 h-0.5 bg-accent-cyan transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </div>
@@ -384,6 +388,36 @@
                                 <feComposite in="SourceGraphic" in2="blur" operator="over" />
                             </filter>
                         </defs>
+
+                        <!-- Stylized City Map Background -->
+                        <g fill="rgba(255,255,255,0.015)" stroke="rgba(255,255,255,0.03)" stroke-width="1">
+                            <!-- Streets -->
+                            <rect x="0" y="130" width="850" height="30" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="0" y="280" width="850" height="30" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="0" y="430" width="850" height="30" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="0" y="530" width="850" height="30" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            
+                            <rect x="85" y="0" width="30" height="600" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="285" y="0" width="30" height="600" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="485" y="0" width="30" height="600" fill="rgba(255,255,255,0.01)" stroke="none" />
+                            <rect x="685" y="0" width="30" height="600" fill="rgba(255,255,255,0.01)" stroke="none" />
+
+                            <!-- Building Blocks -->
+                            <rect x="130" y="40" width="140" height="75" rx="4" />
+                            <rect x="330" y="40" width="140" height="75" rx="4" />
+                            <rect x="530" y="40" width="140" height="75" rx="4" />
+                            
+                            <rect x="130" y="175" width="140" height="90" rx="4" />
+                            <rect x="330" y="175" width="140" height="90" rx="4" />
+                            <rect x="530" y="175" width="140" height="90" rx="4" />
+
+                            <rect x="130" y="325" width="140" height="90" rx="4" />
+                            <rect x="330" y="325" width="140" height="90" rx="4" />
+                            <rect x="530" y="325" width="140" height="90" rx="4" />
+
+                            <!-- Diagonal Highway Accent -->
+                            <path d="M -50 650 L 900 -50" fill="none" stroke="rgba(0, 242, 254, 0.02)" stroke-width="40" />
+                        </g>
 
                         <!-- Base Network Paths (Dashed) -->
                         <g stroke="rgba(255,255,255,0.05)" stroke-width="2" fill="none" stroke-dasharray="5,5">
@@ -662,6 +696,51 @@
             </div>
         </section>
 
+        <!-- ==========================================
+             PAGE 6: PUBLIC DONATION
+             ========================================== -->
+        <section id="public-donate" class="page-section max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 scroll-mt-24 reveal">
+            <div class="mb-8 text-center">
+                <h2 class="font-heading text-3xl font-bold text-white mb-2 flex items-center justify-center gap-3">
+                    <i data-lucide="heart-handshake" class="w-8 h-8 text-accent-cyan"></i>
+                    Contribute to the Network
+                </h2>
+                <p class="text-gray-400">Individuals can donate supplies or funds directly to active logistics routes.</p>
+            </div>
+
+            <form class="glass-card rounded-2xl p-8 space-y-6 reveal" style="transition-delay: 100ms;" onsubmit="event.preventDefault(); alert('Thank you! Your donation has been queued for pickup.');">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-300">Your Full Name</label>
+                        <input type="text" placeholder="John Doe" class="w-full glass-input rounded-xl px-4 py-3" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-medium text-gray-300">Donation Type</label>
+                        <select class="w-full glass-input rounded-xl px-4 py-3 appearance-none cursor-pointer text-gray-300">
+                            <option class="bg-dark text-white">Packaged Food (Non-Perishable)</option>
+                            <option class="bg-dark text-white">Warm Clothing / Blankets</option>
+                            <option class="bg-dark text-white">First Aid Kits</option>
+                            <option class="bg-dark text-white">Financial Contribution</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label class="text-sm font-medium text-gray-300">Pickup Address / Location</label>
+                    <div class="relative">
+                        <i data-lucide="map-pin" class="w-5 h-5 absolute left-3 top-3.5 text-gray-400"></i>
+                        <input type="text" placeholder="123 Civic Street, City Center" class="w-full glass-input rounded-xl pl-10 pr-4 py-3" required>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full py-4 rounded-xl bg-surface border border-accent-cyan text-accent-cyan font-bold text-lg hover:bg-accent-cyan hover:text-dark hover:shadow-[0_0_20px_rgba(0,242,254,0.4)] transition-all duration-300 transform hover:-translate-y-1">
+                        Register Public Donation
+                    </button>
+                </div>
+            </form>
+        </section>
+
     </main>
 
     <!-- Interactive Scripts -->
@@ -677,7 +756,7 @@
 
         const observerOptions = {
             root: null,
-            rootMargin: '-40% 0px -40% 0px', // Trigger when section is near the middle
+            rootMargin: '-20% 0px -60% 0px', // Adjusted trigger zone for perfect nav highlighting
             threshold: 0
         };
 
@@ -711,7 +790,7 @@
                     entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, { threshold: 0.05, rootMargin: "0px 0px -30px 0px" });
 
         revealElements.forEach(el => revealObserver.observe(el));
 
